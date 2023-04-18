@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Login and Registration Form using Bootstrap</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="card border-0 shadow">
+                    <div class="card-header bg-dark text-light">
+                        <h3 class="mb-0">Login</h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="/login" method="post">
+                            {% with messages = get_flashed_messages(category_filter=['login']) %}
+                            {% if messages %}
+                            <div class="alert alert-danger" role="alert">
+                                <strong>Attention</strong>
+                                {% for message in messages %}
+                                <p>{{message}}</p>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                            {% endwith %}
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" name="password">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mt-4 mt-lg-0">
+                <div class="card border-0 shadow">
+                    <div class="card-header bg-dark text-light">
+                        <h3 class="mb-0">Register</h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="/register" method="post">
+                            {% with messages = get_flashed_messages(category_filter=['register']) %}
+                            {% if messages %}
+                            <div class="alert alert-danger" role="alert">
+                                <strong>Attention</strong>
+                                {% for message in messages %}
+                                <p>{{message}}</p>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                            {% endwith %}
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="first_name">First Name</label>
+                                    <input type="text" class="form-control" name="first_name">
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="last_name">Last Name</label>
+                                    <input type="text" class="form-control" name="last_name">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="farm_company">Farm/Company Name</label>
+                                <input type="text" class="form-control" name="farm_company">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" name="email">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" name="password">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirm">Confirm Password</label>
+                                <input type="password" class="form-control" name="confirm">
+                            </div>
+                            <button type="submit" class="btn btn-primary" value="Register">Register</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

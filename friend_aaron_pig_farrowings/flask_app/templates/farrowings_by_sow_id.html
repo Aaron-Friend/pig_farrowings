@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Table with Bootstrap</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/dashboard">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/farrowings/create">Add Farrowing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h2>Farrowings By Sow ID</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Sow ID</th>
+                    <th>Owned By</th>
+                    <th>Date Farrowed</th>
+                    <th>Live Born</th>
+                    <th>Still Born</th>
+                    <th>Mummies</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for farrowing in farrowings %}
+                <tr>
+                    <td><a href="/view/farrowings_by_sow_id/{{farrowing.sow_id}}">{{farrowing.sow_id}}</a></td>
+                    <td>{{farrowing.owner.farm_company}}</td>
+                    <td>{{farrowing.date_farrowed}}</td>
+                    <td>{{farrowing.live_born}}</td>
+                    <td>{{farrowing.still_born}}</td>
+                    <td>{{farrowing.mummies}}</td>
+                    <td>
+                        <a href="/view/farrowings/{{farrowing.id}}" class="btn btn-primary">View</a>
+                        {% if session['user_id'] == farrowing.owner.id %}
+                        <a href="/edit/farrowings/{{farrowing.id}}" class="btn btn-primary">Edit</a>
+                        <a href="/farrowings/delete/{{farrowing.id}}" class="btn btn-danger">Delete</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

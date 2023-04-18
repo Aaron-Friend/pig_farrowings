@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Create Form with Bootstrap</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/dashboard">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/farrowings/create">Add Farrowing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h2>Create Farrowing Record</h2>
+        <form action="/farrowings/create/process" method="post">
+            {% with messages = get_flashed_messages(category_filter = ['farrowing']) %}
+            {% if messages %}
+            <div>
+                {% for m in messages %}
+                <p>{{m}}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endwith %}
+            <div class="form-group">
+                <label for="sow_id">Sow ID:</label>
+                <input type="text" class="form-control" placeholder="Enter Sow ID" name="sow_id">
+            </div>
+
+            <div class="form-group">
+                <label for="date_farrowed">Date Farrowed:</label>
+                <input type="date" class="form-control" name="date_farrowed">
+            </div>
+
+            <div class="form-group">
+                <label for="live_born">Live Born:</label>
+                <input type="number" class="form-control" placeholder="Enter number of live born piglets" name="live_born">
+            </div>
+
+            <div class="form-group">
+                <label for="still_born">Still Born:</label>
+                <input type="number" class="form-control" placeholder="Enter number of still born piglets" name="still_born">
+            </div>
+
+            <div class="form-group">
+                <label for="mummies">Mummies:</label>
+                <input type="number" class="form-control" placeholder="Enter number of mummified piglets" name="mummies">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+</body>
+
+</html>
